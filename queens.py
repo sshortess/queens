@@ -55,34 +55,7 @@ class queen(object):
       #print len(str_msk), str_msk
       #print hex(self.mask)
 
-      """
-      #do upper left leg
 
-      #do upper right leg
-
-      #do lower left
-
-      #do lower right
-      row = self.row
-      col = self.col
-      str_msk = '0'*(row*8 +col) #initialize the mask
-      str_msk += '1'
-      while row < (self.size -1) and col < (self.size -1):
-         str_msk += '0'*(self.size)
-         str_msk += '1'
-         row += 1
-         col += 1
-
-      if len(str_msk) < (self.size*self.size):
-         l = self.size * self.size
-         pad = l - len(str_msk)
-         str_msk += '0' * pad
-
-      self.mask |= int(str_msk,2)
-      print len(str_msk), str_msk
-      print hex(self.mask)
-      """
-      
       # do diagnals
 
       qn = self.row * self.size + self.col
