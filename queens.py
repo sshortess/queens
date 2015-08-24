@@ -51,10 +51,11 @@ class queen(object):
       str_msk = str_msk[1:]
       self.mask |= int(str_msk,2) >> self.col
       # shift to proper location (?) 
-      self.mask = self.mask
+      #self.mask = self.mask
       #print len(str_msk), str_msk
       #print hex(self.mask)
 
+      """
       #do upper left leg
 
       #do upper right leg
@@ -80,5 +81,35 @@ class queen(object):
       self.mask |= int(str_msk,2)
       print len(str_msk), str_msk
       print hex(self.mask)
+      """
+      
+      # do diagnals
+
+      qn = self.row * self.size + self.col
+      mask = 0
+      sm = '1' + '0'* 63
+      bb = int(sm,2)
+      print 'location',self.row, self.col
+      
+      for row in xrange(self.size):
+         if row == self.row:
+            continue
+         c_row = abs(self.row - row)
+         c_col = self.col - c_row
+         #print c_col
+         if c_col >=0:
+            mask |= bb >> (row*8 + c_col)
+         #print hex(mask)
+
+         c_col = self.col + c_row
+         #print c_col
+         if c_col < self.size:
+            mask |= bb >> (row*8 + c_col)
+         #print hex(mask)
+
+      self.mask |= mask
+      print 'current mask',hex(mask)
+
+         
 
 

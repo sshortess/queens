@@ -25,13 +25,18 @@ if __name__ == '__main__':
    n = 8
    
    b = board.board(n)
-   q = queens.queen(1,1,n)
-
    b.print_board()
 
+   q = queens.queen(0,3,n)
    q.mak_mask()
    b.add_queen(q)
 
-   print hex(b.bm)
+   """
+   q2 = queens.queen(2,1,n)
+   q2.mak_mask()
+   b.add_queen(q2)
+   """
+
+   #print hex(b.bm)
 
    b.print_board()
