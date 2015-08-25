@@ -21,17 +21,18 @@ class board(object):
       self.size = size
       #self.board = '0' *(size*size)
       #self.bm = int(self.board,2)
-      self.bm = 0
+      self.bm = 0    # biard mask
       self.queen_list = []
 
    def print_board(self):
 
-      board = bin(self.bm)[2:].zfill(self.size*self.size)
+      #board = bin(self.bm)[2:].zfill(self.size*self.size)
+      board = self.gen_board()
 
       board_list = list(board)
 
       for q in self.queen_list:
-         qp = q[0]*8 + q[1]
+         qp = q.row*self.size + q.col
          board_list[qp] = 'q'
          
 
@@ -42,12 +43,67 @@ class board(object):
       print ''
       
 
+
+   #~~~~~~~~~~~~~~~~~~~~~~~~
+
+   def gen_board(self):
+      """
+      """
+      board = bin(self.bm)[2:].zfill(self.size*self.size)
+      return board
+
    #~~~~~~~~~~~~~~~~~~~~~~~~
 
    def add_queen(self,queen):
       """
       """
       self.bm |= queen.mask
-      self.queen_list.append([queen.row,queen.col])
+      self.queen_list.append(queen)
+
+
+   #~~~~~~~~~~~~~~~~~~~~~~~~
+
+   def next_slot(self, row, col):
+      """
+      """
+      #compute given location
+      loc = row*self.size + col
+
+      #scan board for next open space
+      board = self.gen_board()
+
+      try:
+         nxt_loc = board.index('0',loc)
+         r1 = int(nxt_loc / self.size)
+         c1 = nxt_loc % self.size
+         print nxt_loc
+         return r1,c1
+      except ValueError:
+         return none,none
+      
+      return none,none       #shouldn't happen
+
+
+   #~~~~~~~~~~~~~~~~~~~~~~~~
+
+   def roll_back(self):
+      """
+         roll back (remove) one queen from list & 
+         regen the board mask
+      """
+   
+      if len(self.queen_list) > 0:
+         self.queen_list.pop()
+
+      self.bm = 0
+      for q in self.queen_list:
+         self.bm |= q.mask
+
+
+
+
+
+
+
 
 
