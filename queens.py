@@ -40,8 +40,8 @@ class queen(object):
       self.mask = int(str_msk,2)
       # shift to proper location (?) 
       self.mask = self.mask >> (self.size * self.row)
-      print len(str_msk), str_msk
-      print hex(self.mask)
+      #print len(str_msk), str_msk
+      #print hex(self.mask)
 
       #do column
       str_msk = '0'
@@ -62,7 +62,7 @@ class queen(object):
       mask = 0
       sm = '1' + '0'* 63
       bb = int(sm,2)
-      print 'location',self.row, self.col
+      #print 'location',self.row, self.col
       
       for row in xrange(self.size):
          if row == self.row:
@@ -81,7 +81,7 @@ class queen(object):
          #print hex(mask)
 
       self.mask |= mask
-      print 'current mask',hex(mask)
+      #print 'current mask',hex(mask)
 
          
 
