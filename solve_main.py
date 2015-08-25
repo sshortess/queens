@@ -25,7 +25,6 @@ if __name__ == '__main__':
    n = 8
    
    b = board.board(n)
-   #b.print_board()
 
    q = queens.queen(3,0,n)
    q.mak_mask()
@@ -35,6 +34,9 @@ if __name__ == '__main__':
    q2.mak_mask()
    b.add_queen(q2)
 
-   #print hex(b.bm)
+   q3 = queens.queen(5,6,n)
+   q3.mak_mask()
+   b.add_queen(q3)
+
 
    b.print_board()

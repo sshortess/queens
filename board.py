@@ -19,28 +19,21 @@ class board(object):
 
    def __init__(self, size=8):
       self.size = size
-      self.board = '0' *(size*size)
-      self.bm = int(self.board,2)
+      #self.board = '0' *(size*size)
+      #self.bm = int(self.board,2)
+      self.bm = 0
       self.queen_list = []
 
    def print_board(self):
 
-      self.board = bin(self.bm)[2:].zfill(self.size*self.size)
+      board = bin(self.bm)[2:].zfill(self.size*self.size)
 
-      board_list = list(self.board)
+      board_list = list(board)
 
       for q in self.queen_list:
          qp = q[0]*8 + q[1]
-         #print qp
          board_list[qp] = 'q'
          
-
-      """
-      for col in xrange(self.size):
-         for row in xrange(self.size):
-            print ' %c' % self.board[(row + (col *8))],
-         print ''
-      """
 
       for spot in xrange(self.size * self.size):
          if (spot % self.size) == 0:
@@ -49,9 +42,6 @@ class board(object):
       print ''
       
 
-
-
-
    #~~~~~~~~~~~~~~~~~~~~~~~~
 
    def add_queen(self,queen):
@@ -59,3 +49,5 @@ class board(object):
       """
       self.bm |= queen.mask
       self.queen_list.append([queen.row,queen.col])
+
+

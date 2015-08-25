@@ -40,8 +40,6 @@ class queen(object):
       self.mask = int(str_msk,2)
       # shift to proper location (?) 
       self.mask = self.mask >> (self.size * self.row)
-      #print len(str_msk), str_msk
-      #print hex(self.mask)
 
       #do column
       str_msk = '0'
@@ -51,9 +49,6 @@ class queen(object):
       str_msk = str_msk[1:]
       self.mask |= int(str_msk,2) >> self.col
       # shift to proper location (?) 
-      #self.mask = self.mask
-      #print len(str_msk), str_msk
-      #print hex(self.mask)
 
 
       # do diagnals
@@ -69,19 +64,14 @@ class queen(object):
             continue
          c_row = abs(self.row - row)
          c_col = self.col - c_row
-         #print c_col
          if c_col >=0:
             mask |= bb >> (row*8 + c_col)
-         #print hex(mask)
 
          c_col = self.col + c_row
-         #print c_col
          if c_col < self.size:
             mask |= bb >> (row*8 + c_col)
-         #print hex(mask)
 
       self.mask |= mask
-      #print 'current mask',hex(mask)
 
          
 
