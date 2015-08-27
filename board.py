@@ -76,24 +76,27 @@ class board(object):
          nxt_loc = board.index('0',loc)
          r1 = int(nxt_loc / self.size)
          c1 = nxt_loc % self.size
-         print nxt_loc
+         #print nxt_loc
          return r1,c1
       except ValueError:
-         return none,none
+         print 'oopsie'
+         return None,None
       
-      return none,none       #shouldn't happen
+      print 'outa here'
+      return None,None       #shouldn't happen
 
 
    #~~~~~~~~~~~~~~~~~~~~~~~~
 
-   def roll_back(self):
+   def roll_back(self, n=1):
       """
          roll back (remove) one queen from list & 
          regen the board mask
       """
    
-      if len(self.queen_list) > 0:
-         self.queen_list.pop()
+      for i in xrange(n):
+         if len(self.queen_list) > 0:
+            self.queen_list.pop()
 
       self.bm = 0
       for q in self.queen_list:

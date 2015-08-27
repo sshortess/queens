@@ -24,6 +24,7 @@ if __name__ == '__main__':
 
    n = 8
    
+   """
    b = board.board(n)
 
    q = queens.queen(3,0,n)
@@ -45,9 +46,30 @@ if __name__ == '__main__':
    b.add_queen(q3)
 
    row,col = b.next_slot(5,6)
-   print row,col
+   # print row,col
 
 
    b.print_board()
 
    print ''
+   """
+
+   print "start again"
+
+   b = board.board(n)
+   row = 0
+   col = 2
+   for i in xrange(n):
+      row,col = b.next_slot(row,col)
+      if row is None:
+         break
+      q = queens.queen(row,col,n)
+      q.mak_mask()
+      b.add_queen(q)
+      print "iteration", i
+      b.print_board()
+
+
+
+
+
