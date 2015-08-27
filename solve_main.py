@@ -15,15 +15,7 @@ import board
 import queens
 
 
-
-
-
-
-
-if __name__ == '__main__':
-
-   n = 8
-   
+def test_dev():
    """
    b = board.board(n)
 
@@ -53,6 +45,15 @@ if __name__ == '__main__':
 
    print ''
    """
+
+
+
+
+
+if __name__ == '__main__':
+
+   n = 8
+   
 
    print "start again"
 
