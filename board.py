@@ -21,7 +21,8 @@ class board(object):
       self.size = size
       #self.board = '0' *(size*size)
       #self.bm = int(self.board,2)
-      self.bm = 0    # biard mask
+      self.bm = 0    # board mask
+      self.rollback_count = 0
       self.queen_list = []
 
    def print_board(self):
@@ -94,6 +95,8 @@ class board(object):
          regen the board mask
       """
    
+      self.rollback_count += 1
+
       for i in xrange(n):
          if len(self.queen_list) > 0:
             self.queen_list.pop()
