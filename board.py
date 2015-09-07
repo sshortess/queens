@@ -64,17 +64,23 @@ class board(object):
 
    #~~~~~~~~~~~~~~~~~~~~~~~~
 
-   def next_slot(self, row, col):
+   def next_slot(self, row, col, row_limited = False):
       """
+         option to limit to current row only
       """
       #compute given location
-      loc = row*self.size + col
+      loc = row*self.size + col   # row/col point to this spot
+      if row_limited:
+         loc +=1  # start with next square
+         loc_end = row*self.size + 7
+      else:
+         loc_end = self.size * self.size
 
-      #scan board for next open space
       board = self.gen_board()
 
+      #scan board for next open space
       try:
-         nxt_loc = board.index('0',loc)
+         nxt_loc = board.index('0',loc,loc_end)
          r1 = int(nxt_loc / self.size)
          c1 = nxt_loc % self.size
          #print nxt_loc
@@ -86,6 +92,28 @@ class board(object):
       print 'outa here'
       return None,None       #shouldn't happen
 
+
+   #~~~~~~~~~~~~~~~~~~~~~~~~
+
+   def next_slot_nextRow(self,row,col):
+      """
+      """
+      #compute start next row
+      loc = (row+1)*self.size
+
+      # gen current board string for search
+      board = self.gen_board()
+      try:
+         nxt_loc = board.index('0',loc,loc+7)
+         r1 = int(nxt_loc / self.size)
+         c1 = nxt_loc % self.size
+         return r1,c1
+      except ValueError:
+         print 'Oopsie - next row'
+         return None,None
+
+      print 'Outta here - next row'
+      return None,None
 
    #~~~~~~~~~~~~~~~~~~~~~~~~
 

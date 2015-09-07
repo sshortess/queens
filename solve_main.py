@@ -50,13 +50,17 @@ def test_dev():
 
 def do_next_slot(b,row,col):
 
-   row,col = b.next_slot(row,col)
+   row,col = b.next_slot_nextRow(row,col)
    if row is None:
       qb = b.queen_list[-1]
+      qb2 = b.queen_list[-2]
       if qb.col != 7:
          b.roll_back(2)
-         row,col = b.next_slot(qb.row,qb.col)
-         row,col = b.next_slot(row,col+1)
+         #
+         print qb.row, qb.col
+         b.print_board()
+         #row,col = b.next_slot(qb.row,qb.col,True)
+         row,col = b.next_slot(qb2.row,qb2.col,True)
       else:
          print "cols = 7"
    return row,col
@@ -77,9 +81,6 @@ if __name__ == '__main__':
    # while len(b.queens_list) < (n-1): #target number of queens on board
    for i in xrange(n+4):
 
-      row,col = do_next_slot(b,row,col)
-      if row is None:
-         break
       q = queens.queen(row,col,n)
       q.mak_mask()
       b.add_queen(q)
@@ -89,6 +90,9 @@ if __name__ == '__main__':
       print "queens placed", len(b.queen_list)
       print ""
 
+      row,col = do_next_slot(b,row,col)
+      if row is None:
+         break
 
 
 
