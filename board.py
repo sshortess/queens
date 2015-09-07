@@ -72,7 +72,7 @@ class board(object):
       loc = row*self.size + col   # row/col point to this spot
       if row_limited:
          loc +=1  # start with next square
-         loc_end = row*self.size + 7
+         loc_end = row*self.size + self.size 
       else:
          loc_end = self.size * self.size
 

@@ -51,16 +51,18 @@ def test_dev():
 def do_next_slot(b,row,col):
 
    row,col = b.next_slot_nextRow(row,col)
-   if row is None:
+   #if row is None:
+   while row is None:
       qb = b.queen_list[-1]
-      qb2 = b.queen_list[-2]
-      b.roll_back(2)
+      #qb2 = b.queen_list[-2]
+      b.roll_back(1)
+      #b.roll_back(2)
       #
       print qb.row, qb.col
-      print qb2.row, qb2.col
+      #print qb2.row, qb2.col
       b.print_board()
-      #row,col = b.next_slot(qb.row,qb.col,True)
-      row,col = b.next_slot(qb2.row,qb2.col,True)
+      row,col = b.next_slot(qb.row,qb.col,True)
+      #row,col = b.next_slot(qb2.row,qb2.col,True)
    return row,col
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -77,7 +79,7 @@ if __name__ == '__main__':
    row = 0
    col = 0
    # while len(b.queens_list) < (n-1): #target number of queens on board
-   for i in xrange(n+4):
+   for i in xrange(n+500):
 
       q = queens.queen(row,col,n)
       q.mak_mask()
@@ -87,6 +89,8 @@ if __name__ == '__main__':
 
       print "queens placed", len(b.queen_list)
       print ""
+      if len(b.queen_list) == n:
+         break
 
       row,col = do_next_slot(b,row,col)
       if row is None:
