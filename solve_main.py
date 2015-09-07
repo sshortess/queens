@@ -54,15 +54,13 @@ def do_next_slot(b,row,col):
    if row is None:
       qb = b.queen_list[-1]
       qb2 = b.queen_list[-2]
-      if qb.col != 7:
-         b.roll_back(2)
-         #
-         print qb.row, qb.col
-         b.print_board()
-         #row,col = b.next_slot(qb.row,qb.col,True)
-         row,col = b.next_slot(qb2.row,qb2.col,True)
-      else:
-         print "cols = 7"
+      b.roll_back(2)
+      #
+      print qb.row, qb.col
+      print qb2.row, qb2.col
+      b.print_board()
+      #row,col = b.next_slot(qb.row,qb.col,True)
+      row,col = b.next_slot(qb2.row,qb2.col,True)
    return row,col
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
