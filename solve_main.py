@@ -57,10 +57,11 @@ def do_next_slot(b,row,col):
       #qb2 = b.queen_list[-2]
       b.roll_back(1)
       #b.roll_back(2)
-      #
+      """ #
       print qb.row, qb.col
       #print qb2.row, qb2.col
       b.print_board()
+      """ #
       row,col = b.next_slot(qb.row,qb.col,True)
       #row,col = b.next_slot(qb2.row,qb2.col,True)
    return row,col
@@ -84,16 +85,29 @@ if __name__ == '__main__':
       q = queens.queen(row,col,n)
       q.mak_mask()
       b.add_queen(q)
+      """
       print "\niteration", i
       b.print_board()
 
       print "queens placed", len(b.queen_list)
       print ""
+      """
       if len(b.queen_list) == n:
+         print "\niteration", i
+         b.print_board()
+
+         print "queens placed", len(b.queen_list)
+         print ""
          break
 
       row,col = do_next_slot(b,row,col)
       if row is None:
+         print "\niteration", i
+         b.print_board()
+
+         print "queens placed", len(b.queen_list)
+         print "\tout of squares\n"
+         print ""
          break
 
 

@@ -86,7 +86,7 @@ class board(object):
          #print nxt_loc
          return r1,c1
       except ValueError:
-         print 'oopsie'
+         #print 'oopsie'
          return None,None
       
       print 'outa here'
@@ -109,7 +109,7 @@ class board(object):
          c1 = nxt_loc % self.size
          return r1,c1
       except ValueError:
-         print 'Oopsie - next row'
+         #print 'Oopsie - next row'
          return None,None
 
       print 'Outta here - next row'
