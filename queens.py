@@ -55,7 +55,7 @@ class queen(object):
 
       qn = self.row * self.size + self.col
       mask = 0
-      sm = '1' + '0'* 63
+      sm = '1' + '0'* (self.size * self.size -1) 
       bb = int(sm,2)
       #print 'location',self.row, self.col
       
@@ -65,11 +65,11 @@ class queen(object):
          c_row = abs(self.row - row)
          c_col = self.col - c_row
          if c_col >=0:
-            mask |= bb >> (row*8 + c_col)
+            mask |= bb >> (row*self.size + c_col)
 
          c_col = self.col + c_row
          if c_col < self.size:
-            mask |= bb >> (row*8 + c_col)
+            mask |= bb >> (row*self.size + c_col)
 
       self.mask |= mask
 
