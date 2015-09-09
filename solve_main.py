@@ -79,36 +79,40 @@ if __name__ == '__main__':
    b = board.board(n)
    row = 0
    col = 0
-   # while len(b.queens_list) < (n-1): #target number of queens on board
-   for i in xrange(n+500):
+   i = 0
+   while len(b.queen_list) < (n): #target number of queens on board
+   #for i in xrange(n+500):
 
-      q = queens.queen(row,col,n)
-      q.mak_mask()
-      b.add_queen(q)
-      """
-      print "\niteration", i
-      b.print_board()
-
-      print "queens placed", len(b.queen_list)
-      print ""
-      """
-      if len(b.queen_list) == n:
+      try:
+         i +=1
+         q = queens.queen(row,col,n)
+         q.mak_mask()
+         b.add_queen(q)
+         """
          print "\niteration", i
          b.print_board()
 
          print "queens placed", len(b.queen_list)
          print ""
+         """
+         if len(b.queen_list) == n:
+            print "\niteration", i
+            b.print_board()
+
+            print "queens placed", len(b.queen_list)
+            print ""
+            break
+
+         row,col = do_next_slot(b,row,col)
+         if row is None:
+            print "\niteration", i
+            b.print_board()
+
+            print "queens placed", len(b.queen_list)
+            print "\tout of squares\n"
+            print ""
+            break
+
+      except KeyboardInterrupt:
          break
-
-      row,col = do_next_slot(b,row,col)
-      if row is None:
-         print "\niteration", i
-         b.print_board()
-
-         print "queens placed", len(b.queen_list)
-         print "\tout of squares\n"
-         print ""
-         break
-
-
 
