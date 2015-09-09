@@ -19,15 +19,12 @@ class board(object):
 
    def __init__(self, size=8):
       self.size = size
-      #self.board = '0' *(size*size)
-      #self.bm = int(self.board,2)
       self.bm = 0    # board mask
       self.rollback_count = 0
       self.queen_list = []
 
    def print_board(self):
 
-      #board = bin(self.bm)[2:].zfill(self.size*self.size)
       board = self.gen_board()
 
       board_list = list(board)

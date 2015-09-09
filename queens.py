@@ -21,12 +21,6 @@ class queen(object):
       self.mask = 0
       self.size = size  # value of N on a NxN board
 
-   def set_row_col(self, row, col):
-      self.row = row
-      self.col = col
-
-   def set_size(self,size):
-      self.size = size
 
    def mak_mask(self):
       """
@@ -48,16 +42,12 @@ class queen(object):
          str_msk += '0'*(self.size-1) 
       str_msk = str_msk[1:]
       self.mask |= int(str_msk,2) >> self.col
-      # shift to proper location (?) 
-
 
       # do diagnals
-
       qn = self.row * self.size + self.col
       mask = 0
       sm = '1' + '0'* (self.size * self.size -1) 
       bb = int(sm,2)
-      #print 'location',self.row, self.col
       
       for row in xrange(self.size):
          if row == self.row:
