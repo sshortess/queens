@@ -51,20 +51,57 @@ def test_dev():
 def do_next_slot(b,row,col):
 
    row,col = b.next_slot_nextRow(row,col)
-   #if row is None:
    while row is None:
       qb = b.queen_list[-1]
-      #qb2 = b.queen_list[-2]
       b.roll_back(1)
-      #b.roll_back(2)
       """ #
       print qb.row, qb.col
       #print qb2.row, qb2.col
       b.print_board()
       """ #
       row,col = b.next_slot(qb.row,qb.col,True)
-      #row,col = b.next_slot(qb2.row,qb2.col,True)
    return row,col
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+def do_solver(n):
+   """
+   """
+   b = board.board(n)
+   row = 0
+   col = 0
+   i = 0
+   while len(b.queen_list) < (n): #target number of queens on board
+
+      i +=1
+      q = queens.queen(row,col,n)
+      q.mak_mask()
+      b.add_queen(q)
+      """
+      print "\niteration", i
+      b.print_board()
+
+      print "queens placed", len(b.queen_list)
+      print ""
+      """
+      if len(b.queen_list) == n:
+         print "\niteration", i
+         b.print_board()
+
+         print "queens placed", len(b.queen_list)
+         print ""
+         break
+
+      row,col = do_next_slot(b,row,col)
+      if row is None:
+         print "\niteration", i
+         b.print_board()
+
+         print "queens placed", len(b.queen_list)
+         print "\tout of squares\n"
+         print ""
+         break
+
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -76,6 +113,7 @@ if __name__ == '__main__':
 
    print "start again"
 
+   '''
    b = board.board(n)
    row = 0
    col = 0
@@ -115,4 +153,10 @@ if __name__ == '__main__':
 
       except KeyboardInterrupt:
          break
+   '''
+
+   try:
+      do_solver(n)
+   except KeyboardInterrupt:
+      pass
 
